@@ -164,4 +164,16 @@ public class Deck <T> where T : Card
             //move downwards to next card index
         }
     }
+
+    public void TransferDeckCards(Deck<T> transferIntoDeck)
+    {
+        int numCardsToTransfer = Count;
+        // transfor discard cards back into main
+        for (int i = 0; i < numCardsToTransfer; i++)
+        {
+            T card = Draw();
+            transferIntoDeck.Add(card);
+        }
+    }
+
 }
