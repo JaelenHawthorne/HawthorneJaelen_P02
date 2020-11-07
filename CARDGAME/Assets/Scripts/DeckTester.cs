@@ -11,6 +11,12 @@ public class DeckTester : MonoBehaviour
 
     Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
 
+    Creature _creature;
+
+    public GameObject Hand;
+    public int numOfCardsInDeck;
+
+   
 
     private void SetupAbilityDeck()
     {
@@ -24,6 +30,9 @@ public class DeckTester : MonoBehaviour
 
     private void Update()
     {
+        Hand = GameObject.Find("Hand");
+
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             Draw();
@@ -35,6 +44,7 @@ public class DeckTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             PlayTopCard();
+            _creature.TakeDamage(4);
         }
     }
 
@@ -45,7 +55,12 @@ public class DeckTester : MonoBehaviour
         _playerHand.Add(newCard, DeckPosition.Top);
 
         _abilityCardView.Display(newCard);
-    }
+
+            if (_playerHand.Count == 0)
+            {
+                reShuffle();
+            }
+        }
 
     private void PrintPlayerHand()
     {
@@ -63,12 +78,30 @@ public class DeckTester : MonoBehaviour
         _playerHand.Remove(_playerHand.LastIndex);
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to discard: " + targetCard.Name);
+        
     }
 
     private void Start()
     {
         SetupAbilityDeck();
         
+    }
+
+    private void reShuffle()
+    {
+        
+         _abilityDeck = new Deck<AbilityCard>();
+        
+    }
+
+    public void drawCard()
+    {
+        Draw();
+    }
+
+    public void Play()
+    {
+        PlayTopCard();
     }
 
 }

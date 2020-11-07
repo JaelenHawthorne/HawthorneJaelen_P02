@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d65629097731814bb9dda1d9e3b7ddc, type: 3}
   m_Name: Slash_PlayEffect
   m_EditorClassIdentifier: 
-  _damageAmount: 1
+  _damageAmount: 2

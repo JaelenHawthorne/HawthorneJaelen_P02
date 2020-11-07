@@ -6,8 +6,11 @@ using UnityEngine.UI;
 public class PlayerTurnCardGameState : CardGameState
 {
     [SerializeField] Text _playerTurnTextUI = null;
+    [SerializeField] Text _creatureHealth = null;
 
     int _playerTurnCount = 0;
+
+    
 
     public override void Enter()
     {
@@ -34,5 +37,7 @@ public class PlayerTurnCardGameState : CardGameState
         StateMachine.ChangeState<EnemyTurnCardGameState>();
         // change the enemy turn state
     }
+
+    
 
 }

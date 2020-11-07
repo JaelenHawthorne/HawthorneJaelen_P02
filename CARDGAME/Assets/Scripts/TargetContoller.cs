@@ -25,4 +25,16 @@ public class TargetContoller : MonoBehaviour
 
         }
     }
+
+    public void TargetCreature()
+    {
+        // target the object, if it is targetable
+        ITargetable possibleTarget = _objectToTarget.GetComponent<ITargetable>();
+        if (possibleTarget != null)
+        {
+            Debug.Log("New target Acquired!");
+            CurrentTarget = possibleTarget;
+            _objectToTarget.Target();
+        }
+    }
 }

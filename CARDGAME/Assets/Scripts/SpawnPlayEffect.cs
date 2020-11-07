@@ -17,10 +17,14 @@ public class SpawnPlayEffect : CardEffect
             Vector3 spawnLocation = worldObject.transform.position;
             GameObject newGameObject = Instantiate(_prefabToSpawn, spawnLocation, Quaternion.identity);
             Debug.Log("Spawn new Object: " + newGameObject.name);
+
+            Destroy(newGameObject, 1);
         }
         else
         {
             Debug.Log("Target does not have a transform...");
         }
     }
+
+    
 }
