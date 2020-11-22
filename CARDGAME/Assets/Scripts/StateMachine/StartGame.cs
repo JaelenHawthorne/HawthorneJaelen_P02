@@ -8,7 +8,9 @@ public class StartGame : MonoBehaviour
 {
 
     [SerializeField] GameObject menu;
-    
+    public GameObject Sbutton;
+    public GameObject Rbutton;
+    public AudioSource buttonSound;
 
 
     // Start is called before the first frame update
@@ -28,16 +30,24 @@ public class StartGame : MonoBehaviour
 
     public void startTheGame()
     {
-        SceneManager.LoadScene("CardTest");
+        LeanTween.scale(Sbutton, new Vector3(2, 2, 2), .5f).setLoopPingPong(1).setOnComplete(load);
+        buttonSound.Play();
     }
 
     public void restart()
+    {
+        LeanTween.scale(Rbutton, new Vector3(2, 2, 2), .5f).setLoopPingPong(1).setOnComplete(load);
+        buttonSound.Play();
+    }
+
+    void load()
     {
         SceneManager.LoadScene("CardTest");
     }
 
     public void Quit()
     {
+        buttonSound.Play();
         Application.Quit();
     }
 }

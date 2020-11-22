@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DeckTester : MonoBehaviour
 {
@@ -11,12 +12,38 @@ public class DeckTester : MonoBehaviour
 
     Deck<AbilityCard> _playerHand = new Deck<AbilityCard>();
 
-    Creature _creature;
+    public Creature _creature;
+
+    public GameObject card;
+
+    public GameObject playCard;
+
+    public AudioSource drawSound;
+    public AudioSource playSound;
+
+    public AudioSource attackSound;
+    public AudioSource playerTurn;
 
     public GameObject Hand;
     public int numOfCardsInDeck;
+    public PlayerHealth myPlayer;
 
-   
+    [SerializeField] int enemyDamage = 2;
+    [SerializeField] int healAMount = 3;
+
+    public GameObject enemyTxt;
+    public GameObject playerTxt;
+
+
+    //leen
+    public LeanTweenType inType;
+    public LeanTweenType outType;
+    public UnityEvent onCompleteCallBack; 
+
+    //
+
+
+    public int decidingnum;
 
     private void SetupAbilityDeck()
     {
@@ -56,6 +83,9 @@ public class DeckTester : MonoBehaviour
 
         _abilityCardView.Display(newCard);
 
+        LeanTween.moveX(card, 528, .3f).setLoopPingPong(1).setDelay(0.3f);
+        drawSound.Play();
+
             if (_playerHand.Count == 0)
             {
                 reShuffle();
@@ -72,6 +102,10 @@ public class DeckTester : MonoBehaviour
 
     void PlayTopCard()
     {
+        LeanTween.scale(playCard, new Vector3(2, 2, 2), .5f).setLoopPingPong(1);
+        playSound.Play();
+
+        decidingnum = Random.Range(1, 10);
         AbilityCard targetCard = _playerHand.TopItem;
         targetCard.Play();
         //TODO consider expanding Remove to accept a deck position
@@ -79,6 +113,18 @@ public class DeckTester : MonoBehaviour
         _abilityDiscard.Add(targetCard);
         Debug.Log("Card added to discard: " + targetCard.Name);
         
+        if (decidingnum <= 7)
+        {
+            StartCoroutine(turnChange());
+            myPlayer.TakeDamage(enemyDamage);
+            
+        }
+        else
+        {
+            StartCoroutine(turnChange());
+            _creature.EnemyHeal(healAMount);
+            
+        }
     }
 
     private void Start()
@@ -102,6 +148,17 @@ public class DeckTester : MonoBehaviour
     public void Play()
     {
         PlayTopCard();
+    }
+
+    IEnumerator turnChange()
+    {
+        attackSound.Play();
+        enemyTxt.SetActive(true);
+        playerTxt.SetActive(false);
+        yield return new WaitForSeconds(2);
+        enemyTxt.SetActive(false);
+        playerTxt.SetActive(true);
+        playerTurn.Play();
     }
 
 }

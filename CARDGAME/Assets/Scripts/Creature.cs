@@ -73,6 +73,15 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
     {
         Debug.Log("Creature has been targeted.");
     }
+
+    public void EnemyHeal(int healAMount)
+    {
+        _currentHealth += healAMount;
+        if(_currentHealth >= maxHealth)
+        {
+            _currentHealth = maxHealth;
+        }
+    }
 }
 
 
