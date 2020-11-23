@@ -6,10 +6,21 @@ using UnityEngine;
 
 public class SpawnPlayEffect : CardEffect
 {
+    [SerializeField] int _damageAmount = 1;
+
     [SerializeField] GameObject _prefabToSpawn = null;
 
     public override void Activate(ITargetable target)
     {
+        IDamageable objectToDamage = target as IDamageable;
+        // if it is, apply damage
+        if (objectToDamage != null)
+        {
+            objectToDamage.TakeDamage(_damageAmount);
+            Debug.Log("Add damage to the target");
+        }
+
+
         MonoBehaviour worldObject = target as MonoBehaviour;
 
         if(worldObject != null)

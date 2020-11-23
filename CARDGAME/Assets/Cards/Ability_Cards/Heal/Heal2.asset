@@ -15,4 +15,4 @@ MonoBehaviour:
   _name: Heal
   _cost: 3
   _graphic: {fileID: 21300000, guid: 952ef5f823d697a4697af00a7445fbfc, type: 3}
-  _playEffect: {fileID: 11400000, guid: 89727f4fcafa45648b277527f91aa988, type: 2}
+  _playEffect: {fileID: 11400000, guid: 5be5c7b41c41b7f4e89eaa33f27aa98a, type: 2}

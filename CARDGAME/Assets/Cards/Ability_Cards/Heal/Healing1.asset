@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e6c4b7907a6a924cb3ad205de91d851, type: 3}
+  m_Name: Healing1
+  m_EditorClassIdentifier: 
+  _healAmount: 4
+  _prefabToSpawn: {fileID: 355700462500967172, guid: aa9b96e27835d3847a4840d3bcd4e291,
+    type: 3}

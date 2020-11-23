@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e26f2e031fd7f9449337d6359d672dc, type: 3}
   m_Name: FireBall_PlayEffect
   m_EditorClassIdentifier: 
+  _damageAmount: 3
   _prefabToSpawn: {fileID: 6633033518824643186, guid: 3868810c559f0ce4d971e5c6609fafbb,
     type: 3}

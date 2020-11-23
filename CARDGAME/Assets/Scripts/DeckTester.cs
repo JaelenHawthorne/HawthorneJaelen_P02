@@ -24,6 +24,9 @@ public class DeckTester : MonoBehaviour
     public AudioSource attackSound;
     public AudioSource playerTurn;
 
+    public GameObject mainCard;
+
+
     public GameObject Hand;
     public int numOfCardsInDeck;
     public PlayerHealth myPlayer;
@@ -83,7 +86,7 @@ public class DeckTester : MonoBehaviour
 
         _abilityCardView.Display(newCard);
 
-        LeanTween.moveX(card, 528, .3f).setLoopPingPong(1).setDelay(0.3f);
+        LeanTween.moveX(card, mainCard.transform.position.x, .3f).setLoopPingPong(1).setDelay(0.3f);
         drawSound.Play();
 
             if (_playerHand.Count == 0)

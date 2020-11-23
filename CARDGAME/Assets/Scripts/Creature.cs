@@ -11,13 +11,23 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
     [SerializeField] GameObject winScreen;
     [SerializeField] GameObject loseScreen;
 
+    public int score;
+
+    public PlayerHealth playerLife;
+
+    public int playerHealing = 4;
+
+    public Text HighScore;
+
     [SerializeField] Text CountDown;
     public int timer = 40;
 
     void Start()
     {
+        
         healthBar.maxValue = maxHealth;
         _currentHealth = maxHealth;
+        HighScore.text = "HIGHSCORE: " + PlayerPrefs.GetInt("highScore", 0).ToString();
         StartCoroutine(CountDownToEnd());
     }
 
@@ -55,17 +65,27 @@ public class Creature : MonoBehaviour, ITargetable, IDamageable
     public void Kill()
     {
         Debug.Log("Killed the creature!");
-        
+        score += 1;
+        PlayerPrefs.SetInt("highScore", score);
     }
 
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
         Debug.Log("Took damage. Remaining health: " + _currentHealth);
+
+        PlayerPrefs.SetInt("Enemey Health", _currentHealth);
+
         if(_currentHealth <= 0)
         {
             Kill();
         }
+    }
+
+    public void healPlayer(int heal)
+    {
+        heal = playerHealing;
+        playerLife.Heal(heal);
     }
 
 
